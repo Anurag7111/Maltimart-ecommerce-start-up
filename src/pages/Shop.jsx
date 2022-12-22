@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/shop.css";
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
-import products from "../assets/data/products";
+// import products from "../assets/data/products";
 import ProductLists from "../components/UI/ProductsList";
+import useGetData from "../custom-hooks/useGetData";
+
 
 const Shop = () => {
+
+  const { data: products, loading } = useGetData('products');
+
   const [productsData, setProductsData] = useState(products);
+
+  useEffect(() => {
+    const allitems = products;
+    setProductsData(allitems);
+  }, [products])
 
   const handleFilter = (e) => {
     const filterValue = e.target.value;

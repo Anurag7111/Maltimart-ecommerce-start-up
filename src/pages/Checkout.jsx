@@ -53,13 +53,13 @@ const Checkout = () => {
                   Total Qty: <span>{totalQty} items</span>
                 </h6>
                 <h6>
-                  Subtotal: <span>₹{totalAmt}00</span>
+                  Subtotal: <span>₹{totalAmt}</span>
                 </h6>
                 <h6>
                   Shipping: <br /> Free Shipping <span>₹0</span>
                 </h6>
                 <h4 className="mt-3">
-                  Total Cost: <span>₹{totalAmt}00</span>
+                  Total Cost: <span>₹{totalAmt}</span>
                 </h4>
                 <motion.button
                   whileTap={{ scale: 0.95 }}

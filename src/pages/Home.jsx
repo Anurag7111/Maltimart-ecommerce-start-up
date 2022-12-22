@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import products from "../assets/data/products";
+// import products from "../assets/data/products";
 import Helmet from "../components/Helmet/Helmet";
 import heroImg from "../assets/images/hero-img.png";
 
@@ -12,7 +12,12 @@ import Clock from "../components/UI/Clock";
 
 import counterImg from "../assets/images/counter-timer-img.png";
 
+import useGetData from "../custom-hooks/useGetData";
+
+
 const Home = () => {
+  const { data: products, loading } = useGetData('products');
+  
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [bestSalesProducts, setBestSalesProducts] = useState([]);
   const [mobileProducts, setMobileProducts] = useState([]);
@@ -47,7 +52,7 @@ const Home = () => {
     setMobileProducts(filteredMobileProducts);
     setWirelessProducts(filteredWirelessProducts);
     setPopularProducts(filteredPopularProducts);
-  }, []);
+  }, [products]);
 
   return (
     <Helmet title={" Home"}>
@@ -84,9 +89,13 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
-              <h2 className="section__title">Trending Products</h2>
+              <h2 className="section__title">Trending Chairs</h2>
             </div>
-            <ProductsList data={trendingProducts} />
+            {loading ? (
+              <h5 className="fw-bold">Loading...</h5>
+            ) : (
+              <ProductsList data={trendingProducts} />
+            )}
           </div>
         </div>
       </section>
@@ -95,7 +104,7 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
-              <h2 className="section__title">Best Sales</h2>
+              <h2 className="section__title">Best Saling Sofas</h2>
             </div>
             <ProductsList data={bestSalesProducts} />
           </div>
@@ -133,7 +142,7 @@ const Home = () => {
               <h2 className="section__title">New Arrivals</h2>
             </div>
             <ProductsList data={mobileProducts} />
-            <ProductsList data={wirelessProducts} />
+            <ProductsList data={popularProducts} />
           </div>
         </div>
       </section>
@@ -142,9 +151,9 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center mb-5">
-              <h2 className="section__title">Popular in Category</h2>
+              <h2 className="section__title">Popular in Accessories</h2>
             </div>
-            <ProductsList data={popularProducts} />
+            <ProductsList data={wirelessProducts} />
           </div>
         </div>
       </section>

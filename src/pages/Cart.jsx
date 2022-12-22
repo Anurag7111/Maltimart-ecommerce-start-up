@@ -80,7 +80,7 @@ const Tr = ({ item }) => {
         <img src={item.imgUrl} alt="" />
       </td>
       <td>{item.productName}</td>
-      <td>{item.price}00</td>
+      <td>₹{item.price}</td>
       <td>{item.quantity}px</td>
       <td onClick={deleteProduct}>
         <motion.i

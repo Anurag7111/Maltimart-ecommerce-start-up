@@ -4,13 +4,19 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
-import products from "../assets/data/products";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import ProductList from "../components/UI/ProductsList";
 import { motion } from "framer-motion";
 
+import { db } from "../firebase.config";
+import { doc, getDoc } from "firebase/firestore";
+import useGetData from "../custom-hooks/useGetData";
+
 const ProductDetails = () => {
+
+  const [product, setProduct] = useState({})
+  
   const [tab, setTab] = useState("desc");
   const [rating, setRating] = useState(null);
   const reviewUser = useRef("");
@@ -18,13 +24,31 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
-  const product = products.find((item) => item.id === id);
+
+  const {data: products} = useGetData('products')
+
+  const docRef = doc(db, 'products', id)
+
+  useEffect(() => {
+    const getProduct = async () => {
+      const docSnap = await getDoc(docRef)
+
+      if(docSnap.exists()) {
+        setProduct(docSnap.data())
+      } else {
+        console.log('No product!');
+      }
+    }
+
+    getProduct();
+  }, [])
+
   const {
     imgUrl,
     productName,
     price,
-    avgRating,
-    reviews,
+    // avgRating,
+    // reviews,
     description,
     shortDesc,
     category,
@@ -93,13 +117,13 @@ const ProductDetails = () => {
                       <i class="ri-star-s-fill"></i>
                     </span>
                   </div>
-                  <p>
+                  {/* <p>
                     (<span>{avgRating}</span> ratings)
-                  </p>
+                  </p> */}
                 </div>
                 <div className="d-flex align-items-center gap-5">
                   <span className="product__price">₹{price}</span>
-                  <span>Category: {category.toUpperCase()}</span>
+                  <span>Category:- <span>{category.toUpperCase()}</span></span>
                 </div>
                 <p className="mt-3">{shortDesc}</p>
 
@@ -130,7 +154,7 @@ const ProductDetails = () => {
                   className={`${tab === "rev" ? "active__tab" : ""}`}
                   onClick={() => setTab("rev")}
                 >
-                  Review ({reviews.length})
+                  {/* Review ({reviews.length}) */}
                 </h6>
               </div>
               {tab === "desc" ? (
@@ -140,7 +164,7 @@ const ProductDetails = () => {
               ) : (
                 <div className="product__review mt-5">
                   <div className="review__wrapper">
-                    <ul>
+                    {/* <ul>
                       {reviews?.map((item, index) => (
                         <li key={index} className="mb-4">
                           <h6>Jhon Doe</h6>
@@ -148,7 +172,7 @@ const ProductDetails = () => {
                           <p>{item.text}</p>
                         </li>
                       ))}
-                    </ul>
+                    </ul> */}
 
                     <div className="review__form">
                       <h4>Leave your experience</h4>

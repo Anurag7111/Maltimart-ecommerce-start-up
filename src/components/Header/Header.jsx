@@ -1,13 +1,9 @@
 import React, { useRef, useEffect } from "react";
-
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
-
 import { motion } from "framer-motion";
-
 import logo from "../../assets/images/eco-logo.png";
 import userIcon from "../../assets/images/profile-picture.png";
-
 import { useSelector } from "react-redux";
 import useAuth from "../../custom-hooks/useAuth";
 import { Link } from "react-router-dom";
@@ -27,6 +23,10 @@ const nav__links = [
   {
     path: "cart",
     display: "Cart",
+  },
+  {
+    path: "order",
+    display: "Order",
   },
 ];
 
@@ -108,7 +108,7 @@ const Header = () => {
             <div className="nav__icons">
               <span className="fav__icon">
                 <i class="ri-heart-line"></i>
-                <span className="badge">1</span>
+                <span className="badge">0</span>
               </span>
               <span className="cart__icon" onClick={navigateToCart}>
                 <i class="ri-shopping-bag-line"></i>
@@ -118,7 +118,7 @@ const Header = () => {
                 <motion.img
                   whileTap={{ scale: 1.2 }}
                   src={currentUser ? currentUser.photoURL : userIcon}
-                  alt="user icon"
+                  alt="user"
                   onClick={toggleProfileActions}
                 />
                 <div
@@ -127,11 +127,15 @@ const Header = () => {
                   onClick={toggleProfileActions}
                 >
                   {currentUser ? (
-                    <span onClick={logout}>Logout</span>
+                    <div className="text-center">
+                      <Link to="/dashboard">Dashboard</Link><br/>
+                      <Link to="/">Home</Link><br/>
+                      <span onClick={logout}>Logout</span>
+                    </div>
                   ) : (
                     <div className="text-center">
                       <Link to="/signup">Signup</Link><br/>
-                      <Link to="/login">Login</Link>
+                      <Link to="/login">Login</Link><br/>
                     </div>
                   )}
                 </div>
