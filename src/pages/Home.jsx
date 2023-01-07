@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-// import products from "../assets/data/products";
 import Helmet from "../components/Helmet/Helmet";
 import heroImg from "../assets/images/hero-img.png";
 
@@ -59,7 +58,7 @@ const Home = () => {
       <section className="hero__section">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-md-12">
+            <div className="col-12 col-lg-6 col-md-12">
               <div className="hero__content">
                 <p className="hero__subtitle">Trending product in {year}</p>
                 <h2>Make Your Interior More Minimalistic & Mordern</h2>
@@ -88,7 +87,7 @@ const Home = () => {
       <section className="trending__products">
         <div className="container">
           <div className="row">
-            <div className="col-lg-12 text-center">
+            <div className="col-lg-12 text-center mb-5">
               <h2 className="section__title">Trending Chairs</h2>
             </div>
             {loading ? (
@@ -103,8 +102,8 @@ const Home = () => {
       <section className="best__sales">
         <div className="container">
           <div className="row">
-            <div className="col-lg-12 text-center">
-              <h2 className="section__title">Best Saling Sofas</h2>
+            <div className="col-lg-12 text-center mb-5">
+              <h2 className="section__title">Best Selling Sofas</h2>
             </div>
             <ProductsList data={bestSalesProducts} />
           </div>

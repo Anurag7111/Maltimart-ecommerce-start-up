@@ -4,6 +4,8 @@ import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 
 const Checkout = () => {
   const totalQty = useSelector((state) => state.cart.totalQuantity);
@@ -47,7 +49,7 @@ const Checkout = () => {
                 </div>
               </form>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 col-md-6">
               <div className="checkout__cart">
                 <h6>
                   Total Qty: <span>{totalQty} items</span>
@@ -61,12 +63,15 @@ const Checkout = () => {
                 <h4 className="mt-3">
                   Total Cost: <span>₹{totalAmt}</span>
                 </h4>
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  className="buy__btn auth__btn w-100"
-                >
-                  Place an order
-                </motion.button>
+                <Link to="/">
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    className="buy__btn auth__btn w-100"
+                  >
+                    {/* Place an order */}
+                      Place Order
+                  </motion.button>
+                </Link>
               </div>
             </div>
           </div>

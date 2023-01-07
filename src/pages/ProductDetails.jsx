@@ -123,7 +123,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="d-flex align-items-center gap-5">
                   <span className="product__price">₹{price}</span>
-                  <span>Category:- <span>{category.toUpperCase()}</span></span>
+                  <span>Category:- <span>{category}</span></span>
                 </div>
                 <p className="mt-3">{shortDesc}</p>
 

@@ -43,7 +43,7 @@ const Cart = () => {
               <div>
                 <h6 className="d-flex align-items-center justify-content-between ">
                   Subtotal:
-                  <span className="fs-4 fw-bold">₹{totalAmount}00</span>
+                  <span className="fs-4 fw-bold">₹{totalAmount}</span>
                 </h6>
               </div>
               <p className="fs-6 mt-2">

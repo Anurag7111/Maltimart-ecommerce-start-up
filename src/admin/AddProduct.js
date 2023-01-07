@@ -25,7 +25,7 @@ const AddProducts = () => {
     // ======= add product to the firebase database =========
 
     try {
-      const docRef = await collection(db, "products");
+      const docRef = collection(db, "products");
       const storageRef = ref(
         storage,
         `productImages/${Date.now() + enterproductImg.name}`
